@@ -27,4 +27,7 @@ public interface UsersApi {
 
     @RequestMapping(path = "/delete/{id}",method = { RequestMethod.GET, RequestMethod.DELETE })
     public void delete(@PathVariable("id") Long id);
+
+    @RequestMapping(path = "login/uname/{uname}/pass/{pass}",method = RequestMethod.GET)
+    public Users logins(@PathVariable("uname") String username, @PathVariable("pass") String password);
 }

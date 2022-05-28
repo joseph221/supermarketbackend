@@ -1,6 +1,7 @@
 package com.example.SuperMarket.Repository;
 
 
+import java.util.List;
 import java.util.Optional;
 
 import com.example.SuperMarket.model.ProductList;
@@ -13,4 +14,8 @@ public interface ProductListRepository extends JpaRepository<ProductList,String>
     
     @Query(value = "select s from ProductList Where s.producode =?1",nativeQuery = true)
     Optional<ProductList> findProductListByproducode(String producode);
+
+    @Query(value="select * from product_list where cat_id = ?1",nativeQuery = true)
+    List<ProductList> getByCatId(int catId);
+
 }

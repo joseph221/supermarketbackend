@@ -48,4 +48,5 @@ public class ProduCategoryController implements ProduCategoryApi{
     public long getCatNum() {
       return produCategoriyService.NumberOfCategories();
     }
+
 }

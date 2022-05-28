@@ -33,4 +33,7 @@ public interface ProductListApi {
 
     @RequestMapping(path = "pronum",method = RequestMethod.GET)
     public long getProNum();
+
+    @RequestMapping(path ="report/{catId}",method = RequestMethod.GET)
+    public List<ProductListDto> getByCat_Id(@PathVariable int catId);
 }

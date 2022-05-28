@@ -69,4 +69,14 @@ public class ProductListService {
         }
         return num;
     }
+
+    public List<ProductListDto> getByCatId(int catId){
+        List<ProductList> productLists = productListRepository.getByCatId(catId);
+        List<ProductListDto> productListDtos =new  ArrayList<>();
+        for (ProductList productList : productLists) {
+            productListDtos.add(mapper.map(productList, ProductListDto.class));
+        }
+        return productListDtos;
+
+    }
 }

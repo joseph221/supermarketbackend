@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.example.SuperMarket.Api.SalesApi;
+import com.example.SuperMarket.Dto.Chartdata;
+import com.example.SuperMarket.Dto.OderByMonth;
 import com.example.SuperMarket.Dto.SalesDto;
 import com.example.SuperMarket.service.SalesService;
 
@@ -51,6 +53,16 @@ public class SalesController implements SalesApi{
     @Override
     public List<SalesDto> getSalesCreatedData(LocalDate start, LocalDate end) {
         return salesService.getByCreatedData(start, end);
+    }
+
+    @Override
+    public List<OderByMonth> oderByMonths() {
+        return salesService.oderByMonths();
+    }
+
+    @Override
+    public Chartdata chart() {
+        return salesService.chart();
     }
     
 }

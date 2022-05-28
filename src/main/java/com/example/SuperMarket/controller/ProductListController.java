@@ -54,4 +54,9 @@ public class ProductListController implements ProductListApi {
         productListService.addProduct(productListDto2);
         
     }
+
+    @Override
+    public List<ProductListDto> getByCat_Id(int catId) {
+        return productListService.getByCatId(catId);
+    }
 }

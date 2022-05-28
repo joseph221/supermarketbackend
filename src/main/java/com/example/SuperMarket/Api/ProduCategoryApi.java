@@ -28,4 +28,5 @@ public interface ProduCategoryApi {
 
     @RequestMapping(path = "categonum",method = RequestMethod.GET)
     public long getCatNum();
+
 }

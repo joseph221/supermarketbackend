@@ -48,5 +48,10 @@ public class UsersController implements UsersApi{
         userService.delete(id);
     }
 
+    @Override
+    public Users logins(String username, String password) {
+        return userService.login(username, password);
+    }
+
     
 }

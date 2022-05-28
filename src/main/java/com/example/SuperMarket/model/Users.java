@@ -27,13 +27,11 @@ public class Users {
 	private String username;
 	private String password;
     private String email;
-    private String imgUrl;
-    private LocalDate lastlogindate;
-    private LocalDate lastlogindatedisplyed;
-	private boolean disabled;
-	private boolean accountExpired;
-	private boolean accountLocked;
-	private boolean credentialsExpired;
+    // private String imgUrl;
+	// private boolean disabled;
+	// private boolean accountExpired;
+	// private boolean accountLocked;
+	// private boolean credentialsExpired;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", 

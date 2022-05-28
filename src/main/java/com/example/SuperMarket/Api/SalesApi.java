@@ -3,6 +3,8 @@ package com.example.SuperMarket.Api;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.example.SuperMarket.Dto.Chartdata;
+import com.example.SuperMarket.Dto.OderByMonth;
 import com.example.SuperMarket.Dto.SalesDto;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -30,4 +32,10 @@ public interface SalesApi {
 
     @RequestMapping(path = "salereport/start/{start}/end/{end}",method = RequestMethod.GET)
     public List<SalesDto> getSalesCreatedData(@PathVariable("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startLocalDate,@PathVariable("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endLocalDate);
+
+    @RequestMapping(path = "salereport",method = RequestMethod.GET)
+    public List<OderByMonth> oderByMonths();
+
+    @RequestMapping(path = "chart",method = RequestMethod.GET)
+    public Chartdata chart();
 }
