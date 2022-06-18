@@ -5,11 +5,14 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Base64;
 
 import com.example.SuperMarket.Dto.ProductListDto;
 import com.example.SuperMarket.Dto.ProductListDto2;
+import com.example.SuperMarket.Dto.ProductWithCategoryName;
 import com.example.SuperMarket.Repository.ProductListRepository;
 import com.example.SuperMarket.model.ProductList;
+
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -26,7 +29,7 @@ public class ProductListService {
     
     public void addProduct(ProductListDto2 productListDto2) throws IOException{
         ProductList productList = mapper.map(productListDto2, ProductList.class);
-        productList.setPicByte(productListDto2.getImgBytes().getBytes());
+        productList.setPicByte(Base64.getEncoder().encodeToString(productListDto2.getImgBytes().getBytes()));
         productList.setCreatedDate(LocalDate.now());
         productList.setModifyDate(LocalDate.now());
         productListRepository.save(productList);
@@ -54,8 +57,9 @@ public class ProductListService {
         productListRepository.deleteById(code);
     }
 
-    public void edit(ProductListDto productListDto){
-        ProductList productList = mapper.map(productListDto, ProductList.class);
+    public void edit(ProductListDto2 productListDto2) throws IOException{
+        ProductList productList = mapper.map(productListDto2, ProductList.class);
+        productList.setPicByte(Base64.getEncoder().encodeToString(productListDto2.getImgBytes().getBytes()));
         productList.setModifyDate(LocalDate.now());
         productListRepository.save(productList);
     }
@@ -78,5 +82,9 @@ public class ProductListService {
         }
         return productListDtos;
 
+    }
+
+    public List<ProductWithCategoryName> getData2(){
+       return  productListRepository.getProduct();
     }
 }

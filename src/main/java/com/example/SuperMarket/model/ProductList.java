@@ -22,7 +22,7 @@ public class ProductList extends Audit{
     private Long cost;
     private Long price;
     @Lob
-	private byte[] picByte;
+	private String picByte;
 
    
     

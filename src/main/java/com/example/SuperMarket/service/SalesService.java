@@ -9,9 +9,7 @@ import com.example.SuperMarket.Dto.Chartdata;
 import com.example.SuperMarket.Dto.OderByMonth;
 import com.example.SuperMarket.Dto.SalesDto;
 import com.example.SuperMarket.Repository.SalesRepository;
-import com.example.SuperMarket.Repository.UsersRepository;
 import com.example.SuperMarket.model.Sales;
-import com.example.SuperMarket.model.Users;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;

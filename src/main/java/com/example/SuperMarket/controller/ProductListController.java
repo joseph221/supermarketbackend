@@ -6,6 +6,7 @@ import java.util.List;
 import com.example.SuperMarket.Api.ProductListApi;
 import com.example.SuperMarket.Dto.ProductListDto;
 import com.example.SuperMarket.Dto.ProductListDto2;
+import com.example.SuperMarket.Dto.ProductWithCategoryName;
 import com.example.SuperMarket.service.ProductListService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +33,9 @@ public class ProductListController implements ProductListApi {
     }
 
     @Override
-    public void edit(ProductListDto productListDto) {
+    public void edit(ProductListDto2 productListDto2) throws IOException {
 
-        productListService.edit(productListDto);
+        productListService.edit(productListDto2);
         
     }
 
@@ -58,5 +59,11 @@ public class ProductListController implements ProductListApi {
     @Override
     public List<ProductListDto> getByCat_Id(int catId) {
         return productListService.getByCatId(catId);
+    }
+
+    @Override
+    public List<ProductWithCategoryName> getData2() {
+        
+        return productListService.getData2();
     }
 }

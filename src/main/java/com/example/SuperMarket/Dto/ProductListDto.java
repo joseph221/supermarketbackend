@@ -14,5 +14,5 @@ public class ProductListDto {
     private String uom;
     private Long price;
     private Long cost;
-    private byte[] picByte;
+    private String picByte;
 }

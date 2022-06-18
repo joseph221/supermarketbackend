@@ -1,6 +1,5 @@
 package com.example.SuperMarket.service;
 
-import java.time.LocalDate;
 import java.util.*;
 
 import com.example.SuperMarket.Dto.UserDto;
@@ -28,7 +27,7 @@ public class UserService{
         Users user = mapper.map(userDto,Users.class);
         List<Roles> roles = roleRepository.getByRoleId(userDto.getRoleId());
         user.setRoles(roles);
-       // usersRepository.save(user);
+        usersRepository.save(user);
 
     }
 
