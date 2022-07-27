@@ -1,5 +1,8 @@
 package com.example.SuperMarket.service;
 
+
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 import com.example.SuperMarket.Dto.UserDto;
@@ -7,6 +10,7 @@ import com.example.SuperMarket.Repository.RoleRepository;
 import com.example.SuperMarket.Repository.UsersRepository;
 import com.example.SuperMarket.model.Roles;
 import com.example.SuperMarket.model.Users;
+import com.example.SuperMarket.sha3.Sha3Util;
 
 import org.modelmapper.ModelMapper;
 
@@ -22,11 +26,15 @@ public class UserService{
     private final RoleRepository roleRepository;
     private final ModelMapper mapper;
 
-    public void save(UserDto userDto){
+
+    public void save(UserDto userDto) throws UnsupportedEncodingException{
         System.out.println(userDto);
         Users user = mapper.map(userDto,Users.class);
+        
         List<Roles> roles = roleRepository.getByRoleId(userDto.getRoleId());
         user.setRoles(roles);
+        byte[] shaInBytes = Sha3Util.digest(userDto.getPassword().getBytes(StandardCharsets.UTF_8));
+        user.setPassword(Sha3Util.bytesToHex(shaInBytes));
         usersRepository.save(user);
 
     }
@@ -50,6 +58,8 @@ public class UserService{
     }
 
     public Users login(String username,String password){
-        return usersRepository.getLogins(username, password);
+        byte[] sha3Bytes = Sha3Util.digest(password.getBytes(StandardCharsets.UTF_8));
+        String encrypted = Sha3Util.bytesToHex(sha3Bytes);
+        return usersRepository.getLogins(username, encrypted);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.SuperMarket.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 import com.example.SuperMarket.Api.UsersApi;
@@ -27,7 +28,12 @@ public class UsersController implements UsersApi{
 
     @Override
     public void post(UserDto userDto){
-        userService.save(userDto);
+        try {
+            userService.save(userDto);
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     @Override

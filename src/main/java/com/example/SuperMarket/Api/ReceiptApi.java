@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.SuperMarket.Dto.ReceiptDto;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,7 @@ public interface ReceiptApi {
     public List<ReceiptDto> getReceipt();
 
     @RequestMapping(path = "post", method = RequestMethod.POST)
-    public void post(@RequestBody List<ReceiptDto> receiptDto);
+    public ResponseEntity post(@RequestBody List<ReceiptDto> receiptDto);
 
     @RequestMapping(path = "put", method = RequestMethod.PUT)
     public void put(@RequestBody ReceiptDto receiptDto);

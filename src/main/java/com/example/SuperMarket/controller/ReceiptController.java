@@ -7,6 +7,7 @@ import com.example.SuperMarket.Dto.ReceiptDto;
 import com.example.SuperMarket.service.ReceiptService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,8 +27,8 @@ public class ReceiptController implements ReceiptApi{
     }
 
     @Override
-    public void post(List<ReceiptDto> receiptDto) {
-       receiptService.addReciept(receiptDto);
+    public ResponseEntity post(List<ReceiptDto> receiptDto) {
+       return receiptService.addReciept(receiptDto);
         
     }
 
