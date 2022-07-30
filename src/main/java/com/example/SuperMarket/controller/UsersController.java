@@ -31,7 +31,7 @@ public class UsersController implements UsersApi{
         try {
             userService.save(userDto);
         } catch (UnsupportedEncodingException e) {
-            // TODO Auto-generated catch block
+    
             e.printStackTrace();
         }
     }
@@ -43,9 +43,9 @@ public class UsersController implements UsersApi{
     }
 
     @Override
-    public void edit(Users users) {
+    public void edit(UserDto userDto) {
        
-        userService.update(users);
+        userService.update(userDto);
     }
 
     @Override

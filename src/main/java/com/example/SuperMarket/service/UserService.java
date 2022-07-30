@@ -13,8 +13,7 @@ import com.example.SuperMarket.model.Users;
 import com.example.SuperMarket.sha3.Sha3Util;
 
 import org.modelmapper.ModelMapper;
-
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
@@ -25,6 +24,8 @@ public class UserService{
     private final UsersRepository usersRepository;
     private final RoleRepository roleRepository;
     private final ModelMapper mapper;
+    @Autowired
+    private EmailService emailService;
 
 
     public void save(UserDto userDto) throws UnsupportedEncodingException{
@@ -33,6 +34,7 @@ public class UserService{
         
         List<Roles> roles = roleRepository.getByRoleId(userDto.getRoleId());
         user.setRoles(roles);
+        emailService.sendMail2(user.getEmail(),user.getUsername(),user.getPassword());
         byte[] shaInBytes = Sha3Util.digest(userDto.getPassword().getBytes(StandardCharsets.UTF_8));
         user.setPassword(Sha3Util.bytesToHex(shaInBytes));
         usersRepository.save(user);
@@ -49,8 +51,11 @@ public class UserService{
         return user;
     }
 
-    public void update( Users users){
-        usersRepository.save(users);
+    public void update(UserDto userDto){
+        Users user = mapper.map(userDto,Users.class);
+        List<Roles> roles = roleRepository.getByRoleId(userDto.getRoleId());
+        user.setRoles(roles);
+        usersRepository.save(user);
 
     }
     public void delete(Long id ){

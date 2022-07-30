@@ -23,7 +23,7 @@ public interface UsersApi {
     public Optional<Users> getById(@PathVariable("id") Long Id);
 
     @RequestMapping(path = "/put",method = RequestMethod.PUT)
-    public void edit(@RequestBody Users users);
+    public void edit(@RequestBody UserDto userDto);
 
     @RequestMapping(path = "/delete/{id}",method = { RequestMethod.GET, RequestMethod.DELETE })
     public void delete(@PathVariable("id") Long id);
