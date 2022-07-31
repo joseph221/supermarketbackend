@@ -30,4 +30,10 @@ public interface UsersApi {
 
     @RequestMapping(path = "login/uname/{uname}/pass/{pass}",method = RequestMethod.GET)
     public Users logins(@PathVariable("uname") String username, @PathVariable("pass") String password);
+
+    @RequestMapping(path = "confirm/{cPass}",method = RequestMethod.GET)
+    public Users confermationUsers(@PathVariable("cPass") String curPass);
+
+    @RequestMapping(path = "changepassword/{newpass}/id/{id}",method = RequestMethod.GET)
+    public void changePassword(@PathVariable("newpass")String newpass,@PathVariable("id") long id);
 }

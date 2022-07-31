@@ -67,4 +67,15 @@ public class UserService{
         String encrypted = Sha3Util.bytesToHex(sha3Bytes);
         return usersRepository.getLogins(username, encrypted);
     }
+    public Users currentUser(String currentpass){
+        byte[] sha3Bytes = Sha3Util.digest(currentpass.getBytes(StandardCharsets.UTF_8));
+        String encrypted = Sha3Util.bytesToHex(sha3Bytes);
+        return usersRepository.CurrentPassword(encrypted);
+    }
+
+    public void changePassword(String pass,long id){
+        byte[] sha3Bytes = Sha3Util.digest(pass.getBytes(StandardCharsets.UTF_8));
+        String encrypted = Sha3Util.bytesToHex(sha3Bytes);
+        usersRepository.changePassword(encrypted, id);
+    }
 }

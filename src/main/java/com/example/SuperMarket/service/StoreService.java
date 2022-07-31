@@ -52,6 +52,7 @@ public class StoreService {
 
     public void update(StoreGetDto storeGetDto){
         Store store = mapper.map(storeGetDto, Store.class);
+        store.setAmount(storeGetDto.getPrice()* storeGetDto.getQty());
         storeRepository.save(store);
     }
 

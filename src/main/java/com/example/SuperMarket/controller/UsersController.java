@@ -59,5 +59,16 @@ public class UsersController implements UsersApi{
         return userService.login(username, password);
     }
 
+    @Override
+    public void changePassword(String newpass, long id) {
+        userService.changePassword(newpass, id);
+        
+    }
+
+    @Override
+    public Users confermationUsers(String curPass) {
+        return userService.currentUser(curPass);
+    }
+
     
 }
